@@ -18,6 +18,19 @@ int main()
 
     vector<Vector2f> vertices;
     vector<Vector2f> points;
+    Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+        cerr << "Error loading font." << endl;
+    }
+
+    Text instructionText;
+    instructionText.setFont(font);
+    instructionText.setCharacterSize(20);
+    instructionText.setFillColor(Color::White);
+    instructionText.setPosition(10.f, 10.f);
+    instructionText.setString("Click on any three points to create the vertices for the triangle.");
+
+    bool algorithmStarted = false;
 
 	while (window.isOpen())
 	{
