@@ -50,6 +50,7 @@ int main()
                     {
                         ///fourth click
                         ///push back to points vector
+			    //Nikayel --
 			    point.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
                     }
                 }
@@ -69,6 +70,7 @@ int main()
         {
             ///generate more point(s)
 		for(int i = 0; i <10; ++i){
+			//Nikayel --
 			int randomVertexIndex = rand() % vertices.size();
 			Vector randomVertex = vertices[randomVertexIndex];
 
@@ -77,6 +79,7 @@ int main()
             ///select random vertex
             ///calculate midpoint between random vertex and the last point in the vector
             ///push back the newly generated coord.
+			//Nikayel --
 			points.push_back(midpoint);
         }
 
