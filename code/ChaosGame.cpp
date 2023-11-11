@@ -68,9 +68,16 @@ int main()
         if(points.size() > 0)
         {
             ///generate more point(s)
+		for(int i = 0; i <10; ++i){
+			int randomVertexIndex = rand() % vertices.size();
+			Vector randomVertex = vertices[randomVertexIndex];
+
+			Vector2f midpoint = (randomVertex + points.back()) /2.0f;
+			
             ///select random vertex
             ///calculate midpoint between random vertex and the last point in the vector
             ///push back the newly generated coord.
+			points.push_back(midpoint);
         }
 
         /*
