@@ -19,7 +19,8 @@ int main()
     vector<Vector2f> vertices;
     vector<Vector2f> points;
     Font font;
-    if (!font.loadFromFile("arial.ttf")) {
+    if (!font.loadFromFile("arial.ttf")) 
+    {
         cerr << "Error loading font." << endl;
     }
 
@@ -63,8 +64,8 @@ int main()
                     {
                         ///fourth click
                         ///push back to points vector
-			    //Nikayel --
-			    points.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
+			            //Nikayel --
+			            points.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
                     }
                 }
             }
@@ -82,18 +83,21 @@ int main()
         if(points.size() > 0)
         {
             ///generate more point(s)
-		for(int i = 0; i <10; ++i){
-			//Nikayel --
-			int randomVertexIndex = rand() % vertices.size();
-			Vector2f randomVertex = vertices[randomVertexIndex];
+            for (int i = 0; i < 10; ++i) {
+                //Nikayel --
+                int randomVertexIndex = rand() % vertices.size();
+                Vector2f randomVertex = vertices[randomVertexIndex];
 
-			Vector2f midpoint = (randomVertex + points.back()) /2.0f;
-			
-            ///select random vertex
-            ///calculate midpoint between random vertex and the last point in the vector
-            ///push back the newly generated coord.
-			//Nikayel --
-			points.push_back(midpoint);
+                Vector2f midpoint = (randomVertex + points.back()) / 2.0f;
+
+                ///select random vertex
+                ///calculate midpoint between random vertex and the last point in the vector
+                ///push back the newly generated coord.
+                //Nikayel --
+
+
+                points.push_back(midpoint);
+            }
         }
 
         /*
@@ -101,6 +105,7 @@ int main()
 		Draw
 		****************************************
 		*/
+        // Draw the vertices
         window.clear();
         for(int i = 0; i < vertices.size(); i++)
         {
@@ -109,6 +114,19 @@ int main()
             rect.setFillColor(Color::Blue);
             window.draw(rect);
         }
+
+        // Draw the points 
+
+        for (int i = 0; i < points.size(); i++)
+        {
+            RectangleShape rect(Vector2f(5, 5));
+            rect.setPosition(Vector2f(points[i].x, points[i].y));
+            rect.setFillColor(Color::White);
+            window.draw(rect);
+        }
+
         window.display();
     }
 }
+
+
