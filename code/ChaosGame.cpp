@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-    
+    //Maryam
     // Create a video mode object
 	VideoMode vm(1920, 1080);
 	// Create and open a window for the game
@@ -118,7 +118,6 @@ int main()
         }
 
         // Draw the points 
-        //Maryam 
         for (int i = 0; i < points.size(); i++)
         {
             RectangleShape rect(Vector2f(5, 5));
@@ -126,7 +125,7 @@ int main()
             rect.setFillColor(Color::Magenta);
             window.draw(rect);
         }
-       
+        //Output the instructions
         window.draw(instructionText);
         window.display();
         
