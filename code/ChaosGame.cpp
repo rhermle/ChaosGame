@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
+    
     // Create a video mode object
 	VideoMode vm(1920, 1080);
 	// Create and open a window for the game
@@ -19,17 +20,17 @@ int main()
     vector<Vector2f> vertices;
     vector<Vector2f> points;
     Font font;
-    if (!font.loadFromFile("arial.ttf")) 
+    if (!font.loadFromFile("arial.ttf"))
     {
         cerr << "Error loading font." << endl;
     }
-
+   
     Text instructionText;
     instructionText.setFont(font);
     instructionText.setCharacterSize(20);
-    instructionText.setFillColor(Color::White);
+    instructionText.setFillColor(Color::Magenta);
     instructionText.setPosition(10.f, 10.f);
-    instructionText.setString("Click on any three points to create the vertices for the triangle.");
+    instructionText.setString("Click on any four points to generate the sierpinski triangle.");
 
     bool algorithmStarted = false;
 
@@ -40,6 +41,7 @@ int main()
 		Handle the players input
 		****************************************
 		*/
+        
         Event event;
 		while (window.pollEvent(event))
 		{
@@ -48,6 +50,7 @@ int main()
 				// Quit the game when the window is closed
 				window.close();
             }
+
             if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
@@ -95,7 +98,6 @@ int main()
                 ///push back the newly generated coord.
                 //Nikayel --
 
-
                 points.push_back(midpoint);
             }
         }
@@ -111,21 +113,23 @@ int main()
         {
             RectangleShape rect(Vector2f(10,10));
             rect.setPosition(Vector2f(vertices[i].x, vertices[i].y));
-            rect.setFillColor(Color::Blue);
+            rect.setFillColor(Color::Magenta);
             window.draw(rect);
         }
 
         // Draw the points 
-
+        //Maryam 
         for (int i = 0; i < points.size(); i++)
         {
             RectangleShape rect(Vector2f(5, 5));
             rect.setPosition(Vector2f(points[i].x, points[i].y));
-            rect.setFillColor(Color::White);
+            rect.setFillColor(Color::Magenta);
             window.draw(rect);
         }
-
+       
+        window.draw(instructionText);
         window.display();
+        
     }
 }
 
