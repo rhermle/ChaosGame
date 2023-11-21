@@ -11,6 +11,7 @@ using namespace std;
 
 int main()
 {
+    //Maryam
     // Create a video mode object
 	VideoMode vm(1920, 1080);
 	// Create and open a window for the game
@@ -18,6 +19,20 @@ int main()
 
     vector<Vector2f> vertices;
     vector<Vector2f> points;
+    Font font;
+    if (!font.loadFromFile("arial.ttf"))
+    {
+        cerr << "Error loading font." << endl;
+    }
+   
+    Text instructionText;
+    instructionText.setFont(font);
+    instructionText.setCharacterSize(20);
+    instructionText.setFillColor(Color::Magenta);
+    instructionText.setPosition(10.f, 10.f);
+    instructionText.setString("Click on any four points to generate the sierpinski triangle.");
+
+    bool algorithmStarted = false;
 
 	while (window.isOpen())
 	{
@@ -26,6 +41,7 @@ int main()
 		Handle the players input
 		****************************************
 		*/
+        
         Event event;
 		while (window.pollEvent(event))
 		{
@@ -34,6 +50,7 @@ int main()
 				// Quit the game when the window is closed
 				window.close();
             }
+
             if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
@@ -50,6 +67,8 @@ int main()
                     {
                         ///fourth click
                         ///push back to points vector
+			            //Nikayel --
+			            points.push_back(Vector2f(event.mouseButton.x, event.mouseButton.y));
                     }
                 }
             }
@@ -67,9 +86,20 @@ int main()
         if(points.size() > 0)
         {
             ///generate more point(s)
-            ///select random vertex
-            ///calculate midpoint between random vertex and the last point in the vector
-            ///push back the newly generated coord.
+            for (int i = 0; i < 10; ++i) {
+                //Nikayel --
+                int randomVertexIndex = rand() % vertices.size();
+                Vector2f randomVertex = vertices[randomVertexIndex];
+
+                Vector2f midpoint = (randomVertex + points.back()) / 2.0f;
+
+                ///select random vertex
+                ///calculate midpoint between random vertex and the last point in the vector
+                ///push back the newly generated coord.
+                //Nikayel --
+
+                points.push_back(midpoint);
+            }
         }
 
         /*
@@ -77,14 +107,29 @@ int main()
 		Draw
 		****************************************
 		*/
+        // Draw the vertices
         window.clear();
         for(int i = 0; i < vertices.size(); i++)
         {
             RectangleShape rect(Vector2f(10,10));
             rect.setPosition(Vector2f(vertices[i].x, vertices[i].y));
-            rect.setFillColor(Color::Blue);
+            rect.setFillColor(Color::Magenta);
             window.draw(rect);
         }
+
+        // Draw the points 
+        for (int i = 0; i < points.size(); i++)
+        {
+            RectangleShape rect(Vector2f(5, 5));
+            rect.setPosition(Vector2f(points[i].x, points[i].y));
+            rect.setFillColor(Color::Magenta);
+            window.draw(rect);
+        }
+        //Output the instructions
+        window.draw(instructionText);
         window.display();
+        
     }
 }
+
+
