@@ -14,13 +14,13 @@ int main()
 	// Create a video mode object
 	VideoMode vm(1920, 1080);
 	// Create and open a window for the game
-	RenderWindow window(vm, "Chaos Game!!", Style::Fullscreen | Style::Close);
+	RenderWindow window(vm, "Chaos Game!!", Style::Default);
 
 	//resize window for different resolutions
-	View view;
+	/*View view;
 	view.setSize(VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height);
 	view.setCenter(VideoMode::getDesktopMode().width / 2, VideoMode::getDesktopMode().height / 2);
-	window.setView(view);
+	window.setView(view);*/
 	
 	vector<Vector2f> vertices;
 	vector<Vector2f> points;
