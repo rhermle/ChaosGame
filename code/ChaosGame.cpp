@@ -85,6 +85,7 @@ int main()
 		    rect.setFillColor(Color::Blue);
 		    window.draw(rect);
 		}
+		///TODO:  Draw points
 		window.display();
 	}
 }
